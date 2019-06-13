@@ -9,8 +9,8 @@ This module helps you to understand, how to containerize the .NET Core microserv
 * Docker extension for Visual Studio Code
 * .NET Core 2.2
 
-You can download the .NET Core Microservices applications by cloning the `` repository
-> $ git clone 
+You can download the .NET Core Microservices applications by cloning the `K8S-Microservices` repository
+> $ git clone https://github.com/sonusathyadas/K8S-Microservices.git
 ### Containerizing `IdentityApi` service
 1. Open the `IdentityApi` project in Visual Studio Code.
 2. Open the `appsettings.json` file and update the `Connectionstrings:IdentityConnection` value with your Sql server connection string.
