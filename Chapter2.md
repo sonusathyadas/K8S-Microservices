@@ -2,7 +2,7 @@
 
 This module helps you to understand, how to containerize the .NET Core microservices application. In the previous chapter , you have understood how to create a simple 'Event Management'  Microservices application. In this chapter we will containerize the `IdentityApi`, `EventApi` and the `EventClient` applications.
 
-###Prerequisites
+### Prerequisites
 -------------------------
 * Docker Desktop
 * Visual Studio Code
@@ -11,7 +11,7 @@ This module helps you to understand, how to containerize the .NET Core microserv
 
 You can download the .NET Core Microservices applications by cloning the `` repository
 > $ git clone 
-####Containerizing `IdentityApi` service
+#### Containerizing `IdentityApi` service
 1. Open the `IdentityApi` project in Visual Studio Code.
 2. Open the `appsettings.json` file and update the `Connectionstrings:IdentityConnection` value with your Sql server connection string.
 3. Update the `Jwt:Issuer` value with the Url of the `IdentityAPI` application. Same way, update the `Jwt:Audience` value with the `EventApi` application Url.
@@ -71,7 +71,7 @@ mcr.microsoft.com/dotnet/core/sdk      2.2                 a4974ac66bfc        5
 mcr.microsoft.com/dotnet/core/aspnet   2.2                 ce06b36fcba4        5 weeks ago         260MB
 ```
 
-####Containerizing `EventApi` service
+#### Containerizing `EventApi` service
 
 1. Open the `EventApi` project in Visual Studio Code.
 2. Open the `appsettings.json` file and update the `Connectionstrings:SqlConnection` value with your Sql server connection string.
