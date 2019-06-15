@@ -14,3 +14,4 @@ This repository contains some .NET Core microservices applications that can be d
 3. Deploying locally using `docker-compose`
 4. Creating Kubernetes cluster on Azure
 5. Deploy Microservices application on K8S cluster.
+6. Implementing CI/CD on AKS using Azure DevOps
