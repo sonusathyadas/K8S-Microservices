@@ -4,6 +4,9 @@ This repository contains some .NET Core microservices applications that can be d
 ## Prerequisites 
 * Visual Studio Code
 * Docker for Desktop
+* .NET Core 2.2
+* Node.JS 10 or later
+* Angular 7 CLI
 * Azure Subscription
 * Docker Extension for VS Code
 * Postman REST client

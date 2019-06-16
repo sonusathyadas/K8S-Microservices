@@ -1,0 +1,52 @@
+<div class="row">
+    <div class="col-md-6 col-md-offset-3">
+        <div class="alert alert-success" *ngIf="status && status.success">
+            {{status.message}}
+        </div>
+        <div class="alert alert-danger" *ngIf="status && status.success===false">
+            {{status.message}}
+        </div>
+        <h3>Register</h3>
+        <form class="form" [formGroup]="form" (submit)="submit()">
+            <div class="form-group">
+                <label class="control-label" for="firstName">First name</label>
+                <input type="text" class="form-control" formControlName="firstName" />
+                <div *ngIf="controls.firstName.invalid && (controls.firstName.dirty || controls.firstName.touched)" class="text-danger">
+                    <div *ngIf="controls.firstName.errors.required">First name is required. </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label" for="lastName">Last name</label>
+                <input type="text" class="form-control" formControlName="lastName" />
+                <div *ngIf="controls.lastName.invalid && (controls.lastName.dirty || controls.lastName.touched)" class="text-danger">
+                    <div *ngIf="controls.lastName.errors.required">Last name is required. </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label" for="email">Email</label>
+                <input type="email" class="form-control" formControlName="email" />
+                <div *ngIf="controls.email.invalid && (controls.email.dirty || controls.email.touched)" class="text-danger">
+                    <div *ngIf="controls.email.errors.required">Email is required. </div>
+                    <div *ngIf="controls.email.errors.email">Invalid email value </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label" for="email">Password</label>
+                <input type="password" class="form-control" formControlName="password" />
+                <div *ngIf="controls.password.invalid && (controls.password.dirty || controls.password.touched)" class="text-danger">
+                    <div *ngIf="controls.password.errors.required">Password is required. </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label" for="contactNo">Contact No</label>
+                <input type="text" class="form-control" formControlName="contactNo" />
+                <div *ngIf="controls.contactNo.invalid && (controls.contactNo.dirty || controls.contactNo.touched)" class="text-danger">
+                    <div *ngIf="controls.contactNo.errors.required">Contact number is required. </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <button type="submit" [disabled]="!form.valid" class="btn btn-success">Register</button>
+            </div>
+        </form>
+    </div>
+</div>

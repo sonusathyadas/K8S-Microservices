@@ -1,0 +1,58 @@
+<div class="row">
+        <div class="col-md-6 col-md-offset-3">
+            <div class="alert alert-success" *ngIf="status && status.success">
+                {{status.message}}
+            </div>
+            <div class="alert alert-danger" *ngIf="status && status.success===false">
+                {{status.message}}
+            </div>
+            <h3>New event</h3>
+            <form class="form" [formGroup]="form" (submit)="submit()">
+                <div class="form-group">
+                    <label class="control-label" for="title">Title</label>
+                    <input type="text" class="form-control" formControlName="title" />
+                    <div *ngIf="controls.title.invalid && (controls.title.dirty || controls.title.touched)" class="text-danger">
+                        <div *ngIf="controls.title.errors.required">Event title is required. </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label" for="location">Event location</label>
+                    <input type="text" class="form-control" formControlName="location" />
+                    <div *ngIf="controls.location.invalid && (controls.location.dirty || controls.location.touched)" class="text-danger">
+                        <div *ngIf="controls.location.errors.required">Location of event is required. </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label" for="startDate">Start date</label>
+                    <input type="date" class="form-control" formControlName="startDate" />
+                    <div *ngIf="controls.startDate.invalid && (controls.startDate.dirty || controls.startDate.touched)" class="text-danger">
+                        <div *ngIf="controls.startDate.errors.required">Event start date required. </div>                        
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label" for="endDate">End date</label>
+                    <input type="date" class="form-control" formControlName="endDate" />
+                    <div *ngIf="controls.endDate.invalid && (controls.endDate.dirty || controls.endDate.touched)" class="text-danger">
+                        <div *ngIf="controls.endDate.errors.required">Event end date is required. </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label" for="contactNo">Speaker's name</label>
+                    <input type="text" class="form-control" formControlName="speaker" />
+                    <div *ngIf="controls.speaker.invalid && (controls.speaker.dirty || controls.speaker.touched)" class="text-danger">
+                        <div *ngIf="controls.speaker.errors.required">Speaker's name is required. </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                        <label class="control-label" for="contactNo">Event registration Url</label>
+                        <input type="url" class="form-control" formControlName="url" />  
+                        <div *ngIf="controls.url.invalid && (controls.url.dirty || controls.url.touched)" class="text-danger">
+                                <div *ngIf="controls.url.errors.required">Event registration url is required. </div>
+                            </div>                      
+                    </div>
+                <div class="form-group">
+                    <button type="submit" [disabled]="!form.valid" class="btn btn-success">Save</button>
+                </div>
+            </form>
+        </div>
+    </div>
