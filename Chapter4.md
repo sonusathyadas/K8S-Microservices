@@ -27,9 +27,9 @@ Azure Kubernetes Service (AKS) makes it simple to deploy a managed Kubernetes cl
 Set your default Azure subscription using the following command. Replace the `<subscription id>` with your valid subscription id.
     > $ az account set -s &lt;subscription id&gt;
 4. Create a new resource group.
-   > $ az group create --name K8SGroup --location <region>
+   > $ az group create --name K8SGroup --location &lt;region&gt;
 5. Run the following command to get the latest version of Kubernetes supported in your region.
-   > $ az aks get-versions -l <region> --query 'orchestrators[-1].orchestratorVersion' -o tsv
+   > $ az aks get-versions -l &lt;region&gt; --query 'orchestrators[-1].orchestratorVersion' -o tsv
 
     This will print the latest Kubernestes version in your region. Use this value to create the cluster.
 #### Cluster creation options
