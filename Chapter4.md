@@ -57,7 +57,13 @@ You can create your AKS either with the default Virtual Network or a custom Virt
     > $ az aks create -g K8SGroup -n k8scluster --kubernetes-version &lt;version&gt; --network-plugin azure --service-cidr 10.0.0.0/16 --dns-service-ip 10.0.0.10 --docker-bridge-address 172.17.0.1/16 --vnet-subnet-id &lt;subnet_id&gt; --generate-ssh-keys
 
     This will create the AKS cluster in the VNET location. You need to replace the `<version>` with the latest Kubernetes version and `<subnet_id>` with the subnet id which you have printed as the output of previous command. 
-
+10. Use the following command to list the newly created cluster.
+    > $ az aks list -o table
+    ```
+    Name            Location       ResourceGroup    KubernetesVersion    ProvisioningState    Fqdn
+    --------------  -------------  ---------------  -------------------  -------------------  -----------------------------------------------------------------
+    k8scluster      southeastasia  K8SGroup         1.13.5               Succeeded            k8scluster-k8sgroup-314555-4d49623a.hcp.southeastasia.azmk8s.io    
+    ```
 ---
 Shared by Sonu Sathyadas
 [mailto:sonusathyadas@hotmail.com](mailto:sonusathyadas@gmail.com)
