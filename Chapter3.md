@@ -3,7 +3,6 @@
 In the previous chapter you understood, how to containerize your .NET Core microservices application. You have created the docker images in your local machine repository. In this chapter you will be understanding how to run the containerized applications using `docker-compose`.
 
 ### Prerequisites
--------------------------
 * Docker Desktop
 * Visual Studio Code
 * Docker extension for Visual Studio Code
@@ -73,20 +72,6 @@ Using Compose is basically a three-step process:
                - Jwt:Secret=${JWT_SECRET}
                - Jwt:Issuer=${JWT_ISSUER}
                - Jwt:Audience=${JWT_AUDIENCE}
-        eventui:
-            build: ./EventClient/EventClient/
-            container_name: eventclient
-            ports: 
-               - "5002:80"    
-            depends_on: 
-               - sqlsvc
-               - identitysvc
-               - eventsvc
-            networks: 
-               - frontend
-            environment:
-               - SpaSettings:IdentityApiUrl=${IDENTITY_SERVICE_URL}
-               - SpaSettings:EventApiUrl=${EVENT_SERVICE_URL} 
     ```
    Lets discuss  about the code given above:
    We are defining 3 services - `sqlsvc`, `identitysvc` and `eventsvc`. 
@@ -105,13 +90,7 @@ Using Compose is basically a three-step process:
    * The `eventsvc` container is also created by a `Dockerfile`. While running the `docker-compose` it build the image of application and runs the container.
    * The container is running on port number 80 and forwarded to external port 5001 for external access.
    * `eventsvc` service depends on `sqlsvc` and `identitysvc`.
-   * Need to set the database connection string and Jwt token parameters using the environment variables. The environment variable values are defined in the `.env` file.
-   #### `eventui` service
-   * The `eventui` application image is also created by a `Dockerfile`. While running the `docker-compose` it build the image of application and runs the container.
-   * The container is running on port number 80 and forwarded to external port 5002 for external access.
-   * `eventui` service depends on `sqlsvc`, `identitysvc` and `eventsvc` services.
-   * You need to set the `SpaSettings:IdentityApiUrl` and `SpaSettings:EventApiUrl` environment variables. The environment variable values are defined in the `.env` file.
- 
+   * Neet to set the database connection string and Jwt token parameters using the environment variables. The environment variable values are defined in the `.env` file.
 8. Create a new file with the name `.env`. This file defines the values for the environment variables defined in the `docker-compose.yml` file. While running the docker compose tool picks the `.env` file to get the variable values. Add the following lines in the `.env` file.
     ```
     ACCEPT_EULA=Y
@@ -121,39 +100,35 @@ Using Compose is basically a three-step process:
     JWT_SECRET=mystrongsecretkeyforencryption
     JWT_ISSUER=http://identitysvc
     JWT_AUDIENCE=http://eventsvc
-    IDENTITY_SERVICE_URL=http://localhost:5000
-    EVENT_SERVICE_URL=http://localhost:5001
     ```
 9.  Open the `command prompt` in the root folder and run the following command to run the application.
     > $ docker-compose up
 10. You can use the `-d` option to run in the detach mode also.
     > $ docker-compose up -d
 11.  You will see the running status of the command in the terminal. 
-    ```
-    D:\GitHub\K8S-Microservices (master -> origin)
-    λ docker-compose up -d
-    WARNING: Some networks were defined but are not used by any service: frontend
-    Creating network "k8s-microservices_backend" with driver "bridge"
-    Building identitysvc
-    Step 1/16 : FROM mcr.microsoft.com/dotnet/core/sdk:2.2 AS build
-    ---> a4974ac66bfc
-    Step 2/16 : WORKDIR /src
-    ---> Running in 6cd4383a3baa
-    Removing intermediate container 6cd4383a3baa
-    ---> fffad87c487a
-    Step 3/16 : COPY *.csproj ./
-    ....removed for brievity 
-    ```
-    ```
-    ... ignored some output for brievity
-    WARNING: Some networks were defined but are not used by any service: frontend
-    Starting mssql ... done
-    Starting identity ... done
-    Starting eventapi ... done
-    ```
-12. Open the browser and navigate to `http://localhost:5000` to access `IdentityAPI` application and `http://localhost:5001` to access `EventAPI` application.
-13. To access the UI application, open the browser and navigate to `http://localhost:5002`.
-
+```
+D:\GitHub\K8S-Microservices (master -> origin)
+λ docker-compose up -d
+WARNING: Some networks were defined but are not used by any service: frontend
+Creating network "k8s-microservices_backend" with driver "bridge"
+Building identitysvc
+Step 1/16 : FROM mcr.microsoft.com/dotnet/core/sdk:2.2 AS build
+ ---> a4974ac66bfc
+Step 2/16 : WORKDIR /src
+ ---> Running in 6cd4383a3baa
+Removing intermediate container 6cd4383a3baa
+ ---> fffad87c487a
+Step 3/16 : COPY *.csproj ./
+....removed for brievity 
+```
+```
+... ignored some output for brievity
+WARNING: Some networks were defined but are not used by any service: frontend
+Starting mssql ... done
+Starting identity ... done
+Starting eventapi ... done
+```
+1.  Open the browser and navigate to `http://localhost:5000` to access `IdentityAPI` application and `http://localhost:5001` to access `EventAPI` application.
 ----
 Shared by Sonu Sathyadas
 [mailto:sonusathyadas@hotmail.com](mailto:sonusathyadas@gmail.com)
