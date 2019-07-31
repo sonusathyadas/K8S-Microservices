@@ -29,7 +29,7 @@ Policies are a powerful capability of API Management that allow the Azure portal
 3. Click on `Create a resource` and serarh for `API management`.
 ![API Gateway](resources/images/API_Gateway_1.png)
 4. Specify the API gateway name, subscription, resource group, location, organization name, email and Pricing tier. Click on the `Create` button to create the service. 
-![API Gateway2](resources/images/API_gateway_2.png)
+![API Gateway2](resources/images/API_gateway_1.png)
 It may take 20-30 minutes to complete the creation process. You will get a notification mail when the creation process completes successfully.
 5. Once the API gateway is created, open the gateway service. You can find the the Developer portal URL and Gateway URL in the overview page. 
 ![API Gateway3](resources/images/API_gateway_3.png)
