@@ -27,7 +27,7 @@ Policies are a powerful capability of API Management that allow the Azure portal
 1. Open web browser and navigate to [Azure Portal](https://portal.azure.com).
 2. Login to Azure Portal using your valid credentials.
 3. Click on `Create a resource` and serarh for `API management`.
-![API Gateway](https://raw.githubusercontent.com/sonusathyadas/K8S-Microservices/master/resources/images/API_gateway_1.png)
+![API Gateway](resources/images/API_Gateway_1.png)
 4. Specify the API gateway name, subscription, resource group, location, organization name, email and Pricing tier. Click on the `Create` button to create the service. 
 ![API Gateway](https://raw.githubusercontent.com/sonusathyadas/K8S-Microservices/master/resources/images/API_gateway_2.png)
 It may take 20-30 minutes to complete the creation process. You will get a notification mail when the creation process completes successfully.
