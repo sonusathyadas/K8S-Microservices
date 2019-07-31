@@ -1,0 +1,14 @@
+D:\K8S-Microservices\EventAPI\EventAPI\bin\Debug\netcoreapp2.2\EventAPI.deps.json
+D:\K8S-Microservices\EventAPI\EventAPI\bin\Debug\netcoreapp2.2\EventAPI.runtimeconfig.json
+D:\K8S-Microservices\EventAPI\EventAPI\bin\Debug\netcoreapp2.2\EventAPI.runtimeconfig.dev.json
+D:\K8S-Microservices\EventAPI\EventAPI\bin\Debug\netcoreapp2.2\EventAPI.dll
+D:\K8S-Microservices\EventAPI\EventAPI\bin\Debug\netcoreapp2.2\EventAPI.pdb
+D:\K8S-Microservices\EventAPI\EventAPI\obj\Debug\netcoreapp2.2\EventAPI.csprojAssemblyReference.cache
+D:\K8S-Microservices\EventAPI\EventAPI\obj\Debug\netcoreapp2.2\EventAPI.csproj.CoreCompileInputs.cache
+D:\K8S-Microservices\EventAPI\EventAPI\obj\Debug\netcoreapp2.2\EventAPI.RazorAssemblyInfo.cache
+D:\K8S-Microservices\EventAPI\EventAPI\obj\Debug\netcoreapp2.2\EventAPI.RazorAssemblyInfo.cs
+D:\K8S-Microservices\EventAPI\EventAPI\obj\Debug\netcoreapp2.2\EventAPI.AssemblyInfoInputs.cache
+D:\K8S-Microservices\EventAPI\EventAPI\obj\Debug\netcoreapp2.2\EventAPI.AssemblyInfo.cs
+D:\K8S-Microservices\EventAPI\EventAPI\obj\Debug\netcoreapp2.2\EventAPI.RazorTargetAssemblyInfo.cache
+D:\K8S-Microservices\EventAPI\EventAPI\obj\Debug\netcoreapp2.2\EventAPI.dll
+D:\K8S-Microservices\EventAPI\EventAPI\obj\Debug\netcoreapp2.2\EventAPI.pdb

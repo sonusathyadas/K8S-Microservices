@@ -31,6 +31,7 @@ namespace EventAPI.Controllers
         //GET /api/events
         [HttpGet]
         [ProducesResponseType(StatusCodes.Status200OK)]
+        [AllowAnonymous]
         public ActionResult<IEnumerable<EventData>> GetEvents()
         {
             var events = eventRepo.GetAll();
@@ -41,6 +42,7 @@ namespace EventAPI.Controllers
         [HttpGet("{id}.{format?}")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [AllowAnonymous]
         public ActionResult<EventData> GetById([FromRoute]int id)
         {
             var item = eventRepo.Get(id);
@@ -50,30 +52,20 @@ namespace EventAPI.Controllers
             return item; //200
         }
 
-        //POST /api/events
-        [Authorize(Roles ="admin")]
+        //POST /api/events        
         [HttpPost]
         [ProducesResponseType(StatusCodes.Status201Created)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public async Task<ActionResult<EventData>> AddAsync([FromBody]EventData ev)
         {
-            //try
-            //{
-                if (!ModelState.IsValid)
-                {
-                    return BadRequest(ModelState);
-                }
-                var result = await eventRepo.AddAsync(ev);
-                //return Created($"/api/events/{result.Id}", result); // Adds a location header in the response
-                return CreatedAtAction(nameof(GetById), new { id = result.Id }, result);
-            //}catch(Exception ex)
-            //{
-            //    var error = new {
-            //        Message = ex.Message
-            //        //other attributes
-            //    };
-            //    return StatusCode(StatusCodes.Status500InternalServerError, error);
-            //}
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+            var result = await eventRepo.AddAsync(ev);
+            //return Created($"/api/events/{result.Id}", result); // Adds a location header in the response
+            return CreatedAtAction(nameof(GetById), new { id = result.Id }, result);
+
         }
     }
 }

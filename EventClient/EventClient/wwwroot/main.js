@@ -648,6 +648,10 @@ var AuthIntercepter = /** @class */ (function () {
             }
         });
         var token = localStorage.getItem("auth-token") || undefined;
+<<<<<<< HEAD
+        console.log("Auth Token:" + token);
+=======
+>>>>>>> a02995eb2724286f928d6e75a9137507aed8c1d0
         if (token) {
             var request = newReq.clone({
                 setHeaders: { "Authorization": "Bearer " + token },
@@ -774,7 +778,14 @@ var ConfigurationService = /** @class */ (function () {
         var url = baseURI + "api/settings";
         return this.http.get(url)
             .toPromise()
+<<<<<<< HEAD
+            .then(function (resp) {
+            _this.configuration = resp;
+            console.log(resp);
+        });
+=======
             .then(function (resp) { return _this.configuration = resp; });
+>>>>>>> a02995eb2724286f928d6e75a9137507aed8c1d0
     };
     ConfigurationService = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Injectable"])({
@@ -814,9 +825,18 @@ var EventService = /** @class */ (function () {
         this.APIURL = this.configSvc.configuration.eventApiUrl;
     }
     EventService.prototype.getEvents = function () {
+<<<<<<< HEAD
+        console.log("GET " + this.configSvc.configuration.eventApiUrl + "/api/events");
         return this.http.get(this.APIURL + "/api/events");
     };
     EventService.prototype.addEvent = function (event) {
+        console.log("POST " + this.configSvc.configuration.eventApiUrl + "/api/events");
+        console.log("Event data:", event);
+=======
+        return this.http.get(this.APIURL + "/api/events");
+    };
+    EventService.prototype.addEvent = function (event) {
+>>>>>>> a02995eb2724286f928d6e75a9137507aed8c1d0
         return this.http.post(this.APIURL + "/api/events", event, {
             headers: {
                 "Content-type": "application/json",

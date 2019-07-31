@@ -18,9 +18,13 @@ namespace IdentityAPI
 {
     public class Startup
     {
-        public Startup(IConfiguration configuration)
+        public Startup(IHostingEnvironment env)
         {
-            Configuration = configuration;
+            this.Configuration = new ConfigurationBuilder()
+                .AddJsonFile("appsettings.json")
+                //.AddJsonFile($"appsettings.{env.EnvironmentName}.json")                
+                .AddEnvironmentVariables()
+                .Build();            
         }
 
         public IConfiguration Configuration { get; }
@@ -28,6 +32,12 @@ namespace IdentityAPI
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            
+            Console.WriteLine("ConnectionString:" + Configuration.GetValue<string>("ConnectionStrings:IdentityConnection"));
+            Console.WriteLine("Jwt Issuer:" + Configuration.GetValue<string>("Jwt:Issuer"));
+            Console.WriteLine("Jwt Audience:" + Configuration.GetValue<string>("Jwt:Audience"));
+            Console.WriteLine("Jwt Secret:" + Configuration.GetValue<string>("Jwt:Secret"));
+            
             services.AddDbContext<IdentityDbContext>(options =>
             {
                 options.UseSqlServer(Configuration.GetConnectionString("IdentityConnection"));

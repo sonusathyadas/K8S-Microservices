@@ -25,14 +25,19 @@ using EventAPI.CustomFormatters;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
+using System.IO;
 
 namespace EventAPI
 {
     public class Startup
     {
-        public Startup(IConfiguration configuration)
+        public Startup()
         {
-            Configuration = configuration;
+            var builder=new ConfigurationBuilder();
+            builder.SetBasePath(Directory.GetCurrentDirectory())
+                .AddJsonFile("appsettings.json")
+                .AddEnvironmentVariables();             
+            Configuration = builder.Build();
         }
 
         public IConfiguration Configuration { get; }
@@ -40,6 +45,11 @@ namespace EventAPI
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            Console.WriteLine("ConnectionString:" + Configuration.GetValue<string>("ConnectionStrings:SqlConnection"));
+            Console.WriteLine("Jwt Issuer:" + Configuration.GetValue<string>("Jwt:Issuer"));
+            Console.WriteLine("Jwt Audience:" + Configuration.GetValue<string>("Jwt:Audience"));
+            Console.WriteLine("Jwt Secret:" + Configuration.GetValue<string>("Jwt:Secret"));
+
             services.AddDbContext<EventDbContext>(options =>
             {
                 options.UseSqlServer(Configuration.GetConnectionString("SqlConnection"));
@@ -124,20 +134,6 @@ namespace EventAPI
             }
            
             app.UseCors("AllowAll");
-
-            //app.UseCors(config =>
-            //{
-            //    config.AllowAnyOrigin()
-            //        .AllowAnyMethod()
-            //        .AllowAnyHeader();
-            //    //config.WithOrigins("*.synergetics.com", "*.microsoft.com")
-            //    //    .WithMethods("GET")
-            //    //    .WithHeaders("Content-Type", "Authorization", "Accept");
-
-            //    //config.WithOrigins("*.hexawarriors.com")
-            //    //    .AllowAnyMethod()
-            //    //    .AllowAnyHeader();
-            //});
 
             app.UseSwagger();
             app.UseSwaggerUI(options =>

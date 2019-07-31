@@ -18,6 +18,8 @@ This repository contains some .NET Core microservices applications that can be d
 3. [Deploying locally using `docker-compose`](https://github.com/sonusathyadas/K8S-Microservices/blob/master/Chapter3.md)
 4. [Working with DockerHub](https://github.com/sonusathyadas/K8S-Microservices/blob/master/Chapter4.md) 
 5. [Creating Kubernetes cluster on Azure](https://github.com/sonusathyadas/K8S-Microservices/blob/master/Chapter5.md)
-6. Deploy Microservices application on K8S cluster.
-7. Using Azure Container Registry for Docker images
-8. Implementing CI/CD on AKS using Azure DevOps
+6. [Deploy Microservices application on K8S cluster](https://github.com/sonusathyadas/K8S-Microservices/blob/master/Chapter6.md)
+7. [Configuring API Gateway for microservices](https://github.com/sonusathyadas/K8S-Microservices/blob/master/Chapter7.md)
+8. [Deploying frontend for microservices](https://github.com/sonusathyadas/K8S-Microservices/blob/master/Chapter8.md)
+9. [Using Azure Container Registry for Docker images](https://github.com/sonusathyadas/K8S-Microservices/blob/master/Chapter9.md)
+10. [Implementing CI/CD on AKS using Azure DevOps](https://github.com/sonusathyadas/K8S-Microservices/blob/master/Chapter10.md)

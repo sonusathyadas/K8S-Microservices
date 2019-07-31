@@ -53,10 +53,10 @@ namespace IdentityAPI.Services
             };
 
             ClaimsIdentity claimIdentity = new ClaimsIdentity(claims, "Token");
-            if (userid == "adityasonu@hotmail.com")
-            {
-                claimIdentity.AddClaim(new Claim(ClaimTypes.Role, "admin"));
-            }
+            //if (userid == "adityasonu@hotmail.com")
+            //{
+            //    claimIdentity.AddClaim(new Claim(ClaimTypes.Role, "admin"));
+            //}
             var securityKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(configuration.GetValue<string>("Jwt:Secret")));
             var credentials = new SigningCredentials(securityKey, SecurityAlgorithms.HmacSha256);
             var token = new JwtSecurityToken(

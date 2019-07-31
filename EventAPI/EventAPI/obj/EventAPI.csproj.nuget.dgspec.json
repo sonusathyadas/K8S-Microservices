@@ -1,23 +1,23 @@
 {
   "format": 1,
   "restore": {
-    "d:\\GitHub\\K8S-Microservices\\EventAPI\\EventAPI\\EventAPI.csproj": {}
+    "D:\\K8S-Microservices\\EventAPI\\EventAPI\\EventAPI.csproj": {}
   },
   "projects": {
-    "d:\\GitHub\\K8S-Microservices\\EventAPI\\EventAPI\\EventAPI.csproj": {
+    "D:\\K8S-Microservices\\EventAPI\\EventAPI\\EventAPI.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "d:\\GitHub\\K8S-Microservices\\EventAPI\\EventAPI\\EventAPI.csproj",
+        "projectUniqueName": "D:\\K8S-Microservices\\EventAPI\\EventAPI\\EventAPI.csproj",
         "projectName": "EventAPI",
-        "projectPath": "d:\\GitHub\\K8S-Microservices\\EventAPI\\EventAPI\\EventAPI.csproj",
-        "packagesPath": "C:\\Users\\Sonu Sathyadas\\.nuget\\packages\\",
-        "outputPath": "d:\\GitHub\\K8S-Microservices\\EventAPI\\EventAPI\\obj\\",
+        "projectPath": "D:\\K8S-Microservices\\EventAPI\\EventAPI\\EventAPI.csproj",
+        "packagesPath": "C:\\Users\\sonus\\.nuget\\packages\\",
+        "outputPath": "D:\\K8S-Microservices\\EventAPI\\EventAPI\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
         ],
         "configFilePaths": [
-          "C:\\Users\\Sonu Sathyadas\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\sonus\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [

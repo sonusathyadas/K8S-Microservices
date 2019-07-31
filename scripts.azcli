@@ -1,0 +1,26 @@
+
+az group list -o table
+
+az group create --name K8SGroup --location southeastasia
+
+az aks get-versions -l southeastasia --query "orchestrators[-1].orchestratorVersion" -o tsv
+
+az aks create -g K8SGroup -n k8scluster -l southeastasia --enable-addons monitoring  --generate-ssh-keys
+
+az aks get-credentials -n k8scluster -g K8SGroup
+
+kubectl apply -f k8s-yaml/sqlserver-pvc.yaml
+
+kubectl create secret generic mssql --from-literal=SA_PASSWORD="Password@123"
+
+kubectl apply -f k8s-yaml/sqlserver-deploy.yaml
+
+kubectl apply -f k8s-yaml/sqlserver-service.yaml
+
+kubectl apply -f k8s-yaml/identity-service.yaml
+
+kubectl apply -f k8s-yaml/event-service.yaml
+
+kubectl apply -f k8s-yaml/identity-deploy.yaml
+
+kubectl apply -f k8s-yaml/event-deploy.yaml

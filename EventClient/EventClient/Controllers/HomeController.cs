@@ -15,8 +15,14 @@ namespace EventClient.Controllers
         private AppSettings settings;
 
         public SettingsController(IOptions<AppSettings> options)
+<<<<<<< HEAD
+        {            
+            this.settings = options.Value;
+            Console.WriteLine(options.Value.EventApiUrl);
+=======
         {
             this.settings = options.Value;
+>>>>>>> a02995eb2724286f928d6e75a9137507aed8c1d0
         }
 
         [HttpGet]

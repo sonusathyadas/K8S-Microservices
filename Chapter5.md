@@ -27,9 +27,11 @@ Azure Kubernetes Service (AKS) makes it simple to deploy a managed Kubernetes cl
 Set your default Azure subscription using the following command. Replace the `<subscription id>` with your valid subscription id.
     > $ az account set -s &lt;subscription id&gt;
 4. Create a new resource group.
-   > $ az group create --name K8SGroup --location <region>
+   > $ az group create --name K8SGroup --location &lt;region&gt;
 5. Run the following command to get the latest version of Kubernetes supported in your region.
-   > $ az aks get-versions -l <region> --query 'orchestrators[-1].orchestratorVersion' -o tsv
+   > $ az aks get-versions -l &lt;region&gt; --query "orchestrators[-1].orchestratorVersion" -o tsv
+    
+    > <b>Note</b>: Use double quote (") to enclose 'orchestrators[-1].orchestratorVersion' when running from Windows Command prompt and single quote (') for Bash Shell.
 
     This will print the latest Kubernestes version in your region. Use this value to create the cluster.
 #### Cluster creation options
@@ -38,7 +40,9 @@ You can create your AKS either with the default Virtual Network or a custom Virt
 ##### Creating cluster without custom virtual network
 
 6. Create you AKS cluster without custom VNET by running the following command. 
-   > $ az aks create -g K8SGroup -n k8scluster -l &lt;region&gt; --enable-addons monitoring --kubernetes-version &lt;version&lt; --generate-ssh-keys 
+   > $ az aks create -g K8SGroup -n k8scluster -l &lt;region&gt; --enable-addons monitoring --kubernetes-version &lt;version&gt; --generate-ssh-keys 
+
+    > <b>Note</b>: If you are choosing Kubernetes version greater than or equal to 1.14.0, you need to update your kubectl installed in your local machine to the latest version, which is greater than 1.14.0. Check your kubectl version by 'kubectl version' command. New version of 'Docker Desktop' for Windows install kubectl along with docker. To update it either reinstall it or remove the docker kubectl.
 
     Replace the `<region>` with the region name where you want to create the cluster. also replace the `<version>` with the value you have received in the previous step.
     > **Note:** Optionally you can use the following command to specify the number of nodes and the node size. By default, the cluster will create 3 nodes with Standard_DS2_V2.

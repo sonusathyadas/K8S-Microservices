@@ -1,5 +1,5 @@
 {
-  "FilePath": "d:\\GitHub\\K8S-Microservices\\EventAPI\\EventAPI\\EventAPI.csproj",
+  "FilePath": "d:\\K8S-Microservices\\EventAPI\\EventAPI\\EventAPI.csproj",
   "Configuration": {
     "ConfigurationName": "MVC-2.1",
     "LanguageVersion": "2.1",
@@ -2941,5 +2941,6 @@
     "CSharpLanguageVersion": 703
   },
   "RootNamespace": "EventAPI",
-  "Documents": []
+  "Documents": [],
+  "SerializationFormat": "0.1"
 }

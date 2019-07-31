@@ -63,10 +63,17 @@ namespace EventClient
             {
                 app.UseExceptionHandler("/Home/Error");
                 // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
+<<<<<<< HEAD
+                //app.UseHsts();
+            }
+
+            //app.UseHttpsRedirection();
+=======
                 app.UseHsts();
             }
 
             app.UseHttpsRedirection();
+>>>>>>> a02995eb2724286f928d6e75a9137507aed8c1d0
 
             app.UseCors("CorsPolicy");
             app.Use(async (context, next) =>
