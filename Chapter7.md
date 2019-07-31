@@ -29,26 +29,27 @@ Policies are a powerful capability of API Management that allow the Azure portal
 3. Click on `Create a resource` and serarh for `API management`.
 ![API Gateway](resources/images/API_Gateway_1.png)
 4. Specify the API gateway name, subscription, resource group, location, organization name, email and Pricing tier. Click on the `Create` button to create the service. 
-![API Gateway](resources/images/API_gateway_2.png)
+![API Gateway2](resources/images/API_gateway_2.png)
 It may take 20-30 minutes to complete the creation process. You will get a notification mail when the creation process completes successfully.
 5. Once the API gateway is created, open the gateway service. You can find the the Developer portal URL and Gateway URL in the overview page. 
-![API Gateway](resources/images/API_gateway_3.png)
+![API Gateway3](resources/images/API_gateway_3.png)
+
 ### Configure Event API in Gateway
 1. Now, you need to configure the `Event API` and `IdentityAPI` to the gateway. Click on the `API` from the left side under 'API management'.
 2. Choose the 'OpenAPI' from the list.
-![API Gateway](resources/images/API_gateway_4.png)
+![API Gateway4](resources/images/API_gateway_4.png)
 3. Enter the `EventAPI` service swagger documentation url in the 'Open API specification' textbox. You can also change the Display name for the API. 
-![API Gateway](resources/images/API_gateway_5.png)
+![API Gateway5](resources/images/API_gateway_5.png)
 4. This will add the `Event API` API and its operations in the gateway. 
-![API Gateway](resources/images/API_gateway_6.png)
+![API Gateway6](resources/images/API_gateway_6.png)
 5. Now, you need to configure the backend policy for the service. Click on the edit icon of the 'Http endpoint' from the backend section.
-![API Gateway](resources/images/API_gateway_7.png)
+![API Gateway7](resources/images/API_gateway_7.png)
 6.Select 'Http endpoint' radio button and tick the override checkbox. Enter the `Event API` service public IP address in the textbox and click 'Save'.
-![API Gateway](resources/images/API_gateway_8.png)
+![API Gateway8](resources/images/API_gateway_8.png)
 7. You can see the backend Http endpoint updated in the gateway.
-![API Gateway](resources/images/API_gateway_9.png)
+![API Gateway9](resources/images/API_gateway_9.png)
 8. You can now test the API. Select the `GetEvents` operation and goto the test view by clicking on the 'Test' link. Click on the 'Send' button to send the request.
-![API Gateway](resources/images/API_gateway_10.png)
+![API Gateway10](resources/images/API_gateway_10.png)
 9. This will connect to the `EventAPI` service running on the Kubernetes cluster and returns the events list. If the events table is empty it returns an empty array.
 ![API Gateway](resources/images/API_gateway_11.png)
 ### Configuring Inbound and Outbound policies
