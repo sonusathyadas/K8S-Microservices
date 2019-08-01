@@ -21,8 +21,7 @@ namespace IdentityAPI
         public Startup(IHostingEnvironment env)
         {
             this.Configuration = new ConfigurationBuilder()
-                .AddJsonFile("appsettings.json")
-                //.AddJsonFile($"appsettings.{env.EnvironmentName}.json")                
+                .AddJsonFile("appsettings.json")                
                 .AddEnvironmentVariables()
                 .Build();            
         }

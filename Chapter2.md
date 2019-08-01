@@ -34,7 +34,7 @@ You can download the .NET Core Microservices applications by cloning the `K8S-Mi
 8. Add the following code in the `Dockerfile`.
    ```
     #Stage 1
-    FROM mcr.microsoft.com/dotnet/core/sdk:2.2 AS build
+    FROM mcr.microsoft.com/dotnet/core/sdk:latest AS build
     WORKDIR /src
     COPY *.csproj ./
     RUN dotnet restore
@@ -43,7 +43,7 @@ You can download the .NET Core Microservices applications by cloning the `K8S-Mi
     RUN dotnet publish -c Release -o out
 
     #Stage 2
-    FROM mcr.microsoft.com/dotnet/core/aspnet:2.2 AS runtime
+    FROM mcr.microsoft.com/dotnet/core/aspnet:latest AS runtime
     WORKDIR /app
     COPY --from=build /src/out .
     EXPOSE 80
@@ -95,7 +95,7 @@ mcr.microsoft.com/dotnet/core/aspnet   2.2                 ce06b36fcba4        5
 8. Add the following code in the `Dockerfile`.
    ```
     #Stage 1
-    FROM mcr.microsoft.com/dotnet/core/sdk:2.2 AS build
+    FROM mcr.microsoft.com/dotnet/core/sdk:latest AS build
     WORKDIR /src
     COPY *.csproj ./
     RUN dotnet restore
@@ -104,7 +104,7 @@ mcr.microsoft.com/dotnet/core/aspnet   2.2                 ce06b36fcba4        5
     RUN dotnet publish -c Release -o out
 
     #Stage 2
-    FROM mcr.microsoft.com/dotnet/core/aspnet:2.2 AS runtime
+    FROM mcr.microsoft.com/dotnet/core/aspnet:latest AS runtime
     WORKDIR /app
     COPY --from=build /src/out .
     EXPOSE 80

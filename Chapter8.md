@@ -1,4 +1,67 @@
 ## Deploying frontend for Microservices
+In the previous chapters, we have successfully created the AKS clsuter, deployed microservices and successfully configured the API gateway for the services. In this chapter, we will be creating an Angular UI application for our `Event management` application.
+#### Prerequisites
++ Angular CLI
++ Docker Desktop
++ Docker Hub account
++ Visual Studio Code
+
+### Build the Angular UI application
+1. Clone the `https://github.com/sonusathyadas/K8S-Microservices` repository and open the `EventClient` folder in VS Code. This folder contains the Angular project.
+2. Open the `src/app/interceptors/gateway-interceptor.ts` file and update the value for the `apiSubscriptionKey` variable. Copy your product subscription key which you have acquired in the previous chapter. You can see it the `Profile` page of the `Developer Portal`.
+    ``` 
+    @Injectable({
+            providedIn: 'root'
+    })
+    export class GatewayInterceptor implements HttpInterceptor {
+        apiSubscriptionKey:string="<Your product subscription key>";
+        constructor() { }
+        intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
+            let newReq= req.clone({
+                setHeaders:{
+                    "Ocp-Apim-Subscription-Key":this.apiSubscriptionKey
+                }
+            });
+            return next.handle(newReq)
+        }
+    }
+    ```
+3. Now, you need to configure the base URLs for calling `Event API` and `Identity API`. To do that, open the `event-service.ts` file from the `src/app/servcies` folder. Update the value for the `API-BASE_URL` variable. You can set the API Gateway URL for your `Event API` servcie. Sample code below:
+    ```
+    export class EventService {
+        private API_BASE_URL:string="https://eventmanagement.azure-api.net";
+        constructor(private http: HttpClient) {         
+        }
+    ```
+4. Also, update the base URL for calling `Identity API ` methods. Open the `auth-service.ts` file from the `src/app/services` fodler and update the value for `API_BASE_URL`. Specify the Gateway URL for the `Identity API` service. Sample code below:
+    ```
+    export class AuthService {
+        private API_BASE_URL: string="https://eventmanagement.azure-api.net/auth";
+        private loggedIn: boolean = false;
+        private subject: BehaviorSubject<boolean>;
+    ```
+5. You can now run and test the application locally by running the `ng serve -o` command.
+6. To build the application run the `ng build --prod` command from the command prompt of the project root folder. This will compile and build the code and copy the build outputs to the `dist` folder.
+7. Now, we can dockerize the application. To do so, add a `Dockerfile` to the root folder and copy the following code to it.
+    ```
+    FROM nginx:latest
+    LABEL author="Sonu Sathyadas"
+    WORKDIR /usr/share/nginx/html/
+    COPY ./dist/eventclient/ ./
+    EXPOSE 80
+    ```
+8. Add a `.dockerignore` file also to the project root folder. Add the `node_modules` to the `.dockerignore` file.
+    ```
+    node_modules
+    ```
+9. Now, you can build the docker image of the application. Run the following command to create the image.
+    `docker build -t <dockerid>/eventui:latest .`
+    `eg: docker build -t azuredeveloper/eventui:latest .`
+10. Run and test the application on local Docker.
+11. Upload the docker image to the `Docker Hub`. Run the following command.
+    `docker push <dockerid>/eventui:latest`
+    `eg: docker push azuredeveloper/eventui:latest`
+
 ### Deploy `EventUI` frontend application
 1. Add a new yaml file with the name `frontend-deploy.yaml` in `k8s-yaml` folder.
 2. Add the following code to it.
@@ -25,16 +88,9 @@
                 memory: "256Mi"
                 cpu: "500m"
             ports:
-            - containerPort: 80
-            env:
-            - name: SpaSettings__IdentityApiUrl
-              value: "http://<IDENTITY_SERVICE_EXTERNAL_IP>"
-            - name: SpaSettings__EventApiUrl
-              value: "http://<EVENT_SERVICE_EXTERNAL_IP>"       
+            - containerPort: 80       
     ```
-    * You need to update the `image` attribure value with your `eventui` image name which you have uploaded to your Docker hub. (`eg: azuredeveloper/eventui:latest`). 
-    * Update the `SpaSettings__IdentityApiUrl` environment variable value. Replace the `<IDENTITY_SERVICE_EXTERNAL_IP>` with the `EXTERNAL-IP` of the `identitysvc`.
-    * Update the `SpaSettings__EventApiUrl` environment variable value. Replace the `<EVENT_SERVICE_EXTERNAL_IP>` with the `EXTERNAL-IP` of the `eventsvc`.
+    * You need to update the `image` attribure value with your `eventui` image name which you have uploaded to your Docker hub. (`eg: azuredeveloper/eventui:latest`).     
 3. Run the command to deploy the `EventAPI` instances.
     > $ kubectl apply -f k8s-yaml/frontend-deploy.yaml
     ```
@@ -125,7 +181,7 @@
 13. Deploy the ingress by running the following command.
     > $ kubectl apply -f k8s-yaml/frontend-ingress.yaml
     ```
-    λ kubectl apply -f k8s-yaml\fe-engress.yaml
+    λ kubectl apply -f k8s-yaml\frontend-ingress.yaml
     ingress.extensions "frontend" created
     ```
 14. List the created ingress.
@@ -135,4 +191,10 @@
     NAME       HOSTS                                                   ADDRESS           PORTS     AGE
     frontend   frontend.569cf974d82046338fbf.southeastasia.aksapp.io   104.215.198.161   80        34s
     ```
-15. 
+15. This may take few minutes to update the ingress entry in the cluster's DNS ZONE service. Open the browser and enter the host URL you got in the previous command.
+eg: frontend.569cf974d82046338fbf.southeastasia.aksapp.io
+16. This will load the Angular UI application in the browser.
+![Image](resources/images/frontend.png)
+---
+Shared by Sonu Sathyadas
+[mailto:sonusathyadas@hotmail.com](mailto:sonusathyadas@gmail.com)

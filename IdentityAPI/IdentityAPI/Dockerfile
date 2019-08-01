@@ -14,10 +14,10 @@ COPY --from=build /src/out .
 EXPOSE 80
 
 ENV ASPNETCORE_ENVIRONMENT="Production"
-ENV ConnectionStrings:IdentityConnection="<your connection string>"
-ENV Jwt:Secret="thisislengthysecretkey"
-ENV Jwt:Issuer="http://localhost:5000"
-ENV Jwt:Audience="http://localhost:5001"
+# ENV ConnectionStrings:IdentityConnection="<your connection string>"
+# ENV Jwt:Secret="thisislengthysecretkey"
+# ENV Jwt:Issuer="http://localhost:5000"
+# ENV Jwt:Audience="http://localhost:5001"
 
 ENTRYPOINT [ "dotnet", "IdentityAPI.dll" ]
 

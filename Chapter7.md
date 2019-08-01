@@ -53,6 +53,14 @@ It may take 20-30 minutes to complete the creation process. You will get a notif
 9. This will connect to the `EventAPI` service running on the Kubernetes cluster and returns the events list. If the events table is empty it returns an empty array.
 ![API Gateway](resources/images/API_Gateway_11.png)
 ### Configuring Inbound and Outbound policies
+#### Configure CORS policy
+1. 1. Select 'All Operations' of Event API and click on 'Add policy' in the inbound section.
+![API Gateway](resources/images/API_Gateway_12.png)
+2. Selet 'Cross-origin resource sharing (CORS)' policy from the list.
+![API Gateway](resources/images/API_Gateway_50.png)
+3. To configure the CORS policy click on the `Full` link. This will open the advanced configuration page. Specify the origin as `*` (add valid URIs to allow specific domains), choose `GET, POST, PUT, DELETE` as allowed methods. You also need to specify the allowed headers. While accessing APIs using gateway you need to specify a header called `ocp-apim-subscription-key` to authenticate requests on gateway. Additionally, you can add `content-type`, `accept`, `authorization` headers also according to the application requirements. You can optionally specify the preflight result maximum age also.
+![API Gateway](resources/images/API_Gateway_51.png)
+4. Save the changes by clicking 'Save' button.
 #### Configure rate limiting 
 1. Select 'All Operations' of Event API and click on 'Add policy' in the inbound section.
 ![API Gateway](resources/images/API_Gateway_12.png)

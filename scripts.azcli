@@ -1,26 +1,56 @@
+# Login to the Azure account
+az login
 
+#List the resource groups
 az group list -o table
 
+#Create a new resource group
 az group create --name K8SGroup --location southeastasia
 
+#Get the latest version of Kubernetes supported in the region
 az aks get-versions -l southeastasia --query "orchestrators[-1].orchestratorVersion" -o tsv
 
+#Create the AKS cluster
 az aks create -g K8SGroup -n k8scluster -l southeastasia --enable-addons monitoring  --generate-ssh-keys
 
+#Download the credentials of the cluster to use with kubernetes CLI
 az aks get-credentials -n k8scluster -g K8SGroup
 
+#Deploy sqlserver PVC
 kubectl apply -f k8s-yaml/sqlserver-pvc.yaml
 
+#Create a secret in Kubernetes for storing SQL Server Password
 kubectl create secret generic mssql --from-literal=SA_PASSWORD="Password@123"
 
+#Deploy the SQL Server 
 kubectl apply -f k8s-yaml/sqlserver-deploy.yaml
 
+#Deploy the Services
+#Deploy SQL Server service
 kubectl apply -f k8s-yaml/sqlserver-service.yaml
-
+#Deploy Service for Identity API
 kubectl apply -f k8s-yaml/identity-service.yaml
-
+#Deploy Service for Event aPI
 kubectl apply -f k8s-yaml/event-service.yaml
 
+#Deploy Pods and replica sets
+#Deploy Identity API
 kubectl apply -f k8s-yaml/identity-deploy.yaml
-
+#Deploy Event API
 kubectl apply -f k8s-yaml/event-deploy.yaml
+
+#Deploy the UI for the applications
+#Deploy the frontend pod and replica set
+kubectl apply -f k8s-yaml/frontend-deploy.yaml
+
+#Enable HTTP Applicatin Routing for the AKS cluster 
+az aks enable-addons -g K8SGroup -n k8scluster --addons http_application_routing
+
+#Create Service for Frontend
+kubectl apply -f k8s-yaml/frontend-service.yaml
+
+#Get the DNS Zone name for the cluster
+az aks show -g K8SGroup -n k8scluster --query addonProfiles.httpApplicationRouting.config.HTTPApplicationRoutingZoneName -o table
+
+#Deploy the Ingress for the frontend
+kubectl apply -f k8s-yaml/frontend-ingress.yaml
