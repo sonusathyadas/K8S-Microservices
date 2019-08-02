@@ -11,6 +11,7 @@ In the last chapter, we have created the AKS cluster on Azure. In this chapter, 
     > $ az login
 
     Consider we have used the  following values in the previous chapter
+    
     |Resource           | Name/Value      |
     |-------------------| ----------------|
     | Resource Group    | K8SGroup        |
